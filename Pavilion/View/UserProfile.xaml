@@ -1,0 +1,327 @@
+﻿<UserControl x:Class="Pavilion.View.UserProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pavilion.View"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodel="clr-namespace:Pavilion.ViewModel" 
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             d:DataContext="{d:DesignInstance Type=viewmodel:UserViewModel}"
+             d:DesignHeight="1080" d:DesignWidth="1700">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="sbShowTopMenu" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-260,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideTopMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,-260,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right" 
+                        Panel.ZIndex="2" 
+                        Name="pnlTopMenu" 
+                        Orientation="Vertical" 
+                        VerticalAlignment="Top"
+                        Width="{Binding ActualWidth,
+                        RelativeSource = {RelativeSource AncestorType = {x:Type UserControl}}}"
+                        Margin="0,-260,0,0">
+                <Border BorderBrush="Black"
+                        d:Background="White"
+                        BorderThickness="1" 
+                        Height="250" 
+                        HorizontalAlignment="Stretch"
+                        Margin="10 0">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <TextBox Margin="10" 
+                                     Text="{Binding ShopCenterCreate.surname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Фамилия"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Имя"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.middlename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Отчество"></TextBox>
+
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Логин"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Пароль"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Пол"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterCreate.post_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Статус"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                                <TextBox Width="177" Margin="10"
+                                     Text="{Binding ShopCenterCreate.phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Телефон"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <TextBlock Margin="10"
+                                     Text="{Binding ShopCenterCreate.photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Фото"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBlock>
+                                <Button Margin="10"
+                                     Content="Выбрать фото"
+                                     materialDesign:HintAssist.Hint="Фото"
+                                     Command="{Binding PhotoCommandButton}"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <Image Width="200" Height="250" Grid.Column="0" Grid.Row="5" Margin="5"
+                                       Source="{Binding PathToImage}">
+                                </Image>
+                            </StackPanel>
+
+                        </StackPanel>
+                        <StackPanel>
+                            <DockPanel Height="230">
+
+                                <Button DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" 
+                                    Margin="10 5 10 5"
+                                    Content="Создать пользователя"
+                                    Command="{Binding CreateShopCenterButtonCommand}"
+                                    Width="200">
+                                </Button>
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+                <Grid Width="{Binding ActualWidth,
+                        RelativeSource = {RelativeSource AncestorType = {x:Type UserControl}}}"
+                      Height="60" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="550"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Margin="10 15 10 8"
+                        Grid.Column="0" Orientation="Horizontal">
+                        <wpfTool:CheckComboBox
+                            Text="Настройка столбцов"
+                            Name="Preferences"
+                            Margin="5"
+                            DisplayMemberPath="DataGridColumn.Header"
+                            SelectedMemberPath="IsVisible"
+                            ItemSelectionChanged="Preferences_ItemSelectionChanged">
+
+                        </wpfTool:CheckComboBox>
+                        <TextBox 
+                            Name="SearchTxt"
+                            Width="200"
+                            Margin="5"
+                            materialDesign:HintAssist.Hint="Поиск"
+                            TextChanged="TextBox_TextChanged"
+                            Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
+
+                    </StackPanel>
+                    <Button Margin="10 15 20 10" x:Name="btnTopMenuHide" Grid.Column="1" Click="btnTopMenuHide_Click" HorizontalAlignment="Right" Width="200" FontFamily="Segoe UI Symbol" Content="Создать &#xE110;" Visibility="Hidden "/>
+                    <Button Margin="10 15 20 10" x:Name="btnTopMenuShow" Grid.Column="1" Click="btnTopMenuShow_Click" HorizontalAlignment="Right" Width="200" FontFamily="Segoe UI Symbol" Content="Создать &#xE1FD;" >
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+
+
+        <StackPanel Grid.Row="2" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+
+            <DataGrid 
+                MaxHeight="600"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                x:Name="ShopsGrid" 
+                CanUserAddRows="False"
+                IsReadOnly="True"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding Shops, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия" 
+                                    IsReadOnly="True"
+                                    Binding="{Binding surname}"/>
+                    <DataGridTextColumn Header="Имя" 
+                                    Binding="{Binding name}"/>
+                    <DataGridTextColumn Header="Отчество" 
+                                    Binding="{Binding middlename}"/>
+                    <DataGridTextColumn Header="Логин" 
+                                    Binding="{Binding login}"/>
+                    <DataGridTextColumn Header="Пароль" 
+                                    Visibility="Hidden"
+                                    Binding="{Binding password}"/>
+                    <DataGridTextColumn Header="Пол" 
+                                    Binding="{Binding gender}"/>
+                    <DataGridTextColumn Header="Роль" 
+                                    Binding="{Binding post_id}"/>
+                    <DataGridTextColumn Header="Номер телефона" 
+                                    Visibility="Hidden"
+                                    Binding="{Binding phone}"/>
+                    <DataGridCheckBoxColumn Header="Фото" 
+                                        Binding="{Binding photo}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel HorizontalAlignment="Right" 
+                        Name="pnlUpdateData"
+                        Visibility="{Binding IsVisibleShopCenterPanel,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Orientation="Vertical" 
+                        VerticalAlignment="Top"
+                        Width="{Binding ActualWidth,
+                        RelativeSource = {RelativeSource AncestorType = {x:Type UserControl}}}"
+                        Margin="10 10 0 0">
+
+                <StackPanel Orientation="Vertical" Width="200">
+                    <TextBlock Margin="10"
+                                     Text="{Binding ShopCenterCreate.photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Фото"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="200"/>
+
+                <Border BorderBrush="Black"
+                        d:Background="White"
+                        Height="240"
+                        VerticalAlignment="Center"
+                        BorderThickness="1" 
+                        HorizontalAlignment="Stretch"
+                        Margin="10">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <TextBox Margin="10" 
+                                     Text="{Binding ShopCenterUpdate.surname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Фамилия"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения">
+                                </TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Имя"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.middlename, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Отчество"></TextBox>
+
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Логин"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Пароль"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Пол"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                                <TextBox Margin="10"
+                                     Text="{Binding ShopCenterUpdate.post_id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Статус"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                                <TextBox Width="177" Margin="10"
+                                     Text="{Binding ShopCenterUpdate.phone, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Телефон"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBox>
+
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Margin="10"
+                                     Text="{Binding ShopCenterUpdate.photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     materialDesign:HintAssist.Hint="Фото"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></TextBlock>
+                                <Button Margin="10"
+                                     Content="Выбрать фото"
+                                     materialDesign:HintAssist.Hint="Фото"
+                                     Command="{Binding PhotoUpdateCommandButton}"
+                                     materialDesign:HintAssist.HelperText="Обязательно для заполнения"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="200">
+                                <Image Width="200" 
+                                       Source="{Binding PathToImageUpdate}"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <StackPanel>
+                            <DockPanel Height="230">
+
+                                <Button DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" 
+                                    Margin="10 5 10 5"
+                                    Content="Обновить пользователя"
+                                    Command="{Binding UpdateShopCenterButtonCommand}"
+                                    Width="200">
+
+                                </Button>
+                                <Button DockPanel.Dock="Bottom"
+                                        Background="Red"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Margin="10 5 10 5"
+                                    Content="Удалить пользователя"
+                                    Command="{Binding DeleteShopCenterButtonCommand}"
+                                    Width="200">
+
+                                </Button>
+
+                            </DockPanel>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+                <Button x:Name="BackListButton" 
+                    Margin="20"
+                    Command="{Binding BackToCollectionButtonCommand}"
+                    Content="Показать весь список" >
+
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

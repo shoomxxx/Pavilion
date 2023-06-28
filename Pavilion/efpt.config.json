@@ -1,0 +1,65 @@
+﻿{
+   "CodeGenerationMode": 1,
+   "ContextClassName": "db_kingContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Pavilion",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[employers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[pavilions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[postes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[rent]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[shops_centers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[statuses]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tenants]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "khame\\sqlexpress.db_king.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
